@@ -13,8 +13,8 @@ class V1::LinksControllerTest < ActionDispatch::IntegrationTest
 
     json = JSON.parse(response.body)
 
-    assert_equal(json['title'], 'CoinGecko')
-    assert_equal(json['target_url'], 'https://www.coingecko.com')
+    assert_equal('CoinGecko', json['title'])
+    assert_equal('https://www.coingecko.com', json['target_url'])
     assert_not_nil(json['short_url'])
   end
 
@@ -31,7 +31,7 @@ class V1::LinksControllerTest < ActionDispatch::IntegrationTest
     json = JSON.parse(response.body)
 
     assert_nil(json['title'])
-    assert_equal(json['target_url'], 'https://www.coingecko.com')
+    assert_equal('https://www.coingecko.com', json['target_url'])
     assert_not_nil(json['short_url'])
   end
 

@@ -4,9 +4,11 @@ one:
   target_url: 'https://www.coingecko.com'
   short_url: 'http://localhost:3000/A7Y9BN'
   title: 'CoinGecko'
+  clicks: 1
 
 without_title:
   id: 2
   slug: 'B7Y9BN'
   target_url: 'https://www.coingecko.com'
   short_url: 'http://localhost:3000/A7Y9BN'
+  clicks: 0
