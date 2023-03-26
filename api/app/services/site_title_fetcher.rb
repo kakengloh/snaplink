@@ -9,6 +9,9 @@ class SiteTitleFetcher
   def execute
     response = URI.parse(@url).open.read
     parse_title(response)
+  rescue StandardError => e
+    Rails.logger.warn(e)
+    nil
   end
 
   private

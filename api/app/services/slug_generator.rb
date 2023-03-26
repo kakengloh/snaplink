@@ -6,6 +6,6 @@ class SlugGenerator
 
   def execute
     result = ActiveRecord::Base.connection.execute("SELECT nextval('slug_seq')")
-    HashIds.new(HASH_SALT, 6).encode(result.values)
+    Hashids.new(HASH_SALT, 6).encode(result.values)
   end
 end

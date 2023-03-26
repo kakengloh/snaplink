@@ -53,6 +53,9 @@ group :development do
 end
 
 group :test do
+  # Use WebMock to mock HTTP requests
+  gem 'webmock'
+
   # Test coverage analysis
   gem 'simplecov', require: false
 end
