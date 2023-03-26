@@ -76,6 +76,7 @@ GEM
       irb (>= 1.5.0)
       reline (>= 0.3.1)
     erubi (1.12.0)
+    geocoder (1.8.1)
     globalid (1.1.0)
       activesupport (>= 5.0)
     hashids (1.0.6)
@@ -162,6 +163,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   debug
+  geocoder (~> 1.8.1)
   hashids (~> 1.0.6)
   pg (~> 1.1)
   puma (~> 5.0)
