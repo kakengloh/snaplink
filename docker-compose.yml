@@ -1,0 +1,29 @@
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  api:
+    build: ./api
+    environment:
+      RAILS_ENV: development
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+    depends_on:
+      - postgres
+    ports:
+      - 3000:3000
+
+volumes:
+  postgres_data:
+
+networks:
+  default:
+    name: snaplink
+
