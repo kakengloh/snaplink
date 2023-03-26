@@ -14,7 +14,7 @@ development:
 test:
   <<: *default
   host: postgres
-  database: core
+  database: core_test
 
 production:
   <<: *default
