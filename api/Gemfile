@@ -53,6 +53,9 @@ group :development do
 end
 
 group :test do
+  # Minitest testing framework
+  gem 'minitest'
+
   # Use WebMock to mock HTTP requests
   gem 'webmock'
 
