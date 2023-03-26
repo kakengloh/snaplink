@@ -36,8 +36,13 @@ class V1::LinksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should throw bad request if `target_url` is not provided' do
-    assert_raise(ActionController::ParameterMissing) do
-      post('/v1/links')
-    end
+    post('/v1/links')
+
+    assert_response(:bad_request)
+
+    json = JSON.parse(response.body)
+
+    assert_equal('INVALID_PARAMETER', json['error']['code'])
+    assert_equal('param is missing or the value is empty: target_url', json['error']['message'])
   end
 end

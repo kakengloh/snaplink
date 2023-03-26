@@ -15,4 +15,10 @@ class RootControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to(link.target_url)
   end
+
+  test 'should throw not found when link does not exists' do
+    get('/notfound')
+
+    assert_response(:not_found)
+  end
 end

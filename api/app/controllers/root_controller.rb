@@ -1,8 +1,8 @@
 class RootController < ApplicationController
   def visit
-    LinkTracker.new(params[:slug], tracking_attributes).execute
-
     link = Link.find_by_slug!(params[:slug])
+
+    LinkTracker.new(params[:slug], tracking_attributes).execute
 
     redirect_to(link.target_url, allow_other_host: true)
   end
