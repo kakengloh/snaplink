@@ -6,7 +6,10 @@ require 'webmock/minitest'
 require_relative '../config/environment'
 require 'rails/test_help'
 
-SimpleCov.start('rails')
+SimpleCov.start('rails') do
+  add_filter('/app/channels/')
+  add_filter('/app/mailers/')
+end
 
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
