@@ -1,7 +1,13 @@
 import Head from 'next/head';
 import Header from '@/components/Header';
+import { useState } from 'react';
+import { BsMagic } from 'react-icons/bs';
+import Button from '@/components/Button';
+import Input from '@/components/Input';
 
 export default function Home() {
+  const [targetUrl, setTargetUrl] = useState('');
+
   return (
     <>
       <Head>
@@ -14,18 +20,26 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className="h-[calc(100vh-7rem)] w-screen bg-gradient-to-b from-[#05010D] to-[#21014A] text-white">
-        <div className="flex justify-around items-center pt-48">
-          <div className="space-y-5">
-            <h1 className="font-extrabold text-6xl">
-              Short links, big impact.
+      <main className="h-[calc(100vh-7rem)] w-screen bg-gradient-to-r from-primary-800 to-primary-900 text-white px-5 md:px-96">
+        <div className="flex flex-wrap md:flex-nowrap justify-between items-center md:pt-48 gap-y-5">
+          <div className="space-y-5 text-center md:text-start">
+            <h1 className="font-extrabold text-6xl leading-tight text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-600">
+              Short links, <br />
+              big impact.
             </h1>
-            <p className="text-[#937F8B] text-xl">
-              Snaplink the link shortener that simplifies your links, amplifies
-              your message and builds trust with your audience.
+            <p className="text-primary-100 text-xl w-full md:w-2/3">
+              Snaplink simplifies your links, amplifies your message and builds
+              trust with your audience.
             </p>
           </div>
-          <div></div>
+          <div className="w-[600px] space-y-5 bg-gray-900 p-5 rounded-xl">
+            <Input
+              value={targetUrl}
+              onChange={(value) => setTargetUrl(value)}
+              placeholder="Enter long URL"
+            />
+            <Button isFullWidth icon={BsMagic} text="Shorten" />
+          </div>
         </div>
       </main>
     </>
