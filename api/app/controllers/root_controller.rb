@@ -1,6 +1,6 @@
 class RootController < ApplicationController
   def visit
-    LinkTracker.new(params[:slug]).execute
+    LinkTracker.new(params[:slug], tracking_attributes).execute
 
     link = Link.find_by_slug!(params[:slug])
 
