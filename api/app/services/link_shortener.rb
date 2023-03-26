@@ -6,7 +6,7 @@ class LinkShortener
   def execute
     slug = SlugGenerator.new.execute
 
-    Link.create(
+    Link.create!(
       title: SiteTitleFetcher.new(@target_url).execute,
       slug: slug,
       short_url: "#{Rails.application.config.origin}/#{slug}",
