@@ -2,9 +2,12 @@ require 'test_helper'
 
 class V1::LinksControllerTest < ActionDispatch::IntegrationTest
   test 'should create short link given a target URL' do
-    stub_request(:get, 'https://coingecko.com').to_return(body: '<title>CoinGecko</title>', status: 200)
+    site_title_fetcher_mock = Minitest::Mock.new
+    site_title_fetcher_mock.expect(:execute, 'CoinGecko')
 
-    post('/v1/links', params: { target_url: 'https://coingecko.com' })
+    SiteTitleFetcher.stub(:new, site_title_fetcher_mock) do
+      post('/v1/links', params: { target_url: 'https://coingecko.com' })
+    end
 
     assert_response(:success)
 
@@ -16,9 +19,12 @@ class V1::LinksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create short link given a target URL even if fetch title fails' do
-    stub_request(:get, 'https://coingecko.com').to_return(status: 403)
+    site_title_fetcher_mock = Minitest::Mock.new
+    site_title_fetcher_mock.expect(:execute, nil)
 
-    post('/v1/links', params: { target_url: 'https://coingecko.com' })
+    SiteTitleFetcher.stub(:new, site_title_fetcher_mock) do
+      post('/v1/links', params: { target_url: 'https://coingecko.com' })
+    end
 
     assert_response(:success)
 
