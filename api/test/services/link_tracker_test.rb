@@ -25,4 +25,18 @@ class LinkTrackerTest < ActiveSupport::TestCase
     assert_equal(tracking_attributes[:country], visit.country)
     assert_equal(tracking_attributes[:city], visit.city)
   end
+
+  test 'should rollback if there is error' do
+    link = links(:one)
+
+    tracking_attributes = {
+      a: 1,
+      b: 2,
+      c: 3
+    }
+
+    assert_raise(ActiveRecord::Rollback) do
+      LinkTracker.new(link.slug, tracking_attributes).execute
+    end
+  end
 end

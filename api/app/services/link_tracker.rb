@@ -14,9 +14,6 @@ class LinkTracker
       end
 
       link.visits.create!(@attributes)
-    rescue ActiveRecord::RecordInvalid => e
-      Rails.logger.error(e)
-      raise ActiveRecord::Rollback
     end
   end
 end
