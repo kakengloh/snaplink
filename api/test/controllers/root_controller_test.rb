@@ -1,6 +1,14 @@
 require 'test_helper'
 
 class RootControllerTest < ActionDispatch::IntegrationTest
+  test 'should return OK' do
+    get('/')
+
+    assert_response(:success)
+
+    assert_equal('OK', response.body)
+  end
+
   test 'should redirect to target URL' do
     link = links(:one)
 

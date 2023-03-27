@@ -1,4 +1,8 @@
 class RootController < ApplicationController
+  def ping
+    render(plain: 'OK')
+  end
+
   def visit
     link = Link.find_by_slug!(params[:slug])
 
@@ -6,6 +10,8 @@ class RootController < ApplicationController
 
     redirect_to(link.target_url, allow_other_host: true)
   end
+
+  private
 
   def tracking_attributes
     {
