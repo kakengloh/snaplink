@@ -1,7 +1,7 @@
 export default function Header() {
   return (
-    <nav className="bg-gradient-to-r from-primary-800 to-primary-900 px-5 md:px-96 h-28 flex items-center">
-      <span className="text-white font-bold text-3xl">snaplink</span>
+    <nav className="flex h-28 items-center bg-gradient-to-r from-primary-800 to-primary-900 px-5 md:px-96">
+      <span className="text-3xl font-bold text-white">snaplink</span>
     </nav>
   );
 }

@@ -33,3 +33,6 @@ coverage
 
 # Production key
 /config/credentials/production.key
+
+# Environment variables
+.env*

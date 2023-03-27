@@ -21,10 +21,10 @@ export default function Button({
   return (
     <button
       className={classNames(
-        'bg-primary-700 text-primary-400 hover:opacity-90 rounded-xl h-10 font-medium flex justify-center items-center space-x-2',
+        'flex h-10 items-center justify-center space-x-2 rounded-xl bg-primary-700 font-medium text-primary-400 hover:opacity-90',
         {
           'w-full': isFullWidth,
-        }
+        },
       )}
       type={type}
       onClick={onClick}

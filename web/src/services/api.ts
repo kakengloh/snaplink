@@ -3,7 +3,7 @@ import { Link } from '@/types/link';
 const request = async <T>(
   method: 'GET' | 'POST' | 'PUT' | 'DELETE',
   path: string,
-  { body = {}, headers = {} } = {}
+  { body = {}, headers = {} } = {},
 ): Promise<{ status: number; json: T }> => {
   const response = await fetch(process.env.NEXT_PUBLIC_API_URL + path, {
     method,

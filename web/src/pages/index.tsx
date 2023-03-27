@@ -28,7 +28,7 @@ export default function Home() {
   });
 
   const { mutateAsync: createLink, isLoading } = useMutation(
-    (targetUrl: string) => api.createLink(targetUrl)
+    (targetUrl: string) => api.createLink(targetUrl),
   );
 
   const [link, setLink] = useState<Link>();
@@ -71,20 +71,20 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className="h-[calc(100vh-7rem)] w-screen bg-gradient-to-r from-primary-800 to-primary-900 text-white px-5 md:px-96">
-        <div className="flex flex-wrap md:flex-nowrap justify-between items-center md:pt-48 gap-y-5">
+      <main className="h-[calc(100vh-7rem)] w-screen bg-gradient-to-r from-primary-800 to-primary-900 px-5 text-white md:px-96">
+        <div className="flex flex-wrap items-center justify-between gap-y-5 md:flex-nowrap md:pt-48">
           <div className="space-y-5 text-center md:text-start">
-            <h1 className="font-extrabold text-6xl leading-tight text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-600">
+            <h1 className="bg-gradient-to-r from-primary to-primary-600 bg-clip-text text-6xl font-extrabold leading-tight text-transparent">
               Short links, <br />
               big impact.
             </h1>
-            <p className="text-primary-100 text-xl w-full md:w-2/3">
+            <p className="w-full text-xl text-primary-100 md:w-2/3">
               Snaplink simplifies your links, amplifies your message and builds
               trust with your audience.
             </p>
           </div>
           <form
-            className="w-[600px] space-y-5 bg-gray-900 p-5 rounded-xl"
+            className="w-[600px] space-y-5 rounded-xl bg-gray-900 p-5"
             onSubmit={handleSubmit(onFormSubmit, onFormError)}
           >
             <FormInput

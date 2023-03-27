@@ -5,9 +5,12 @@ extends:
   - eslint:recommended
   - plugin:react/recommended
   - plugin:@typescript-eslint/recommended
+  - prettier
 overrides: []
 ignorePatterns:
   - tailwind.config.js
+  - next.config.js
+  - prettier.config.js
 parser: '@typescript-eslint/parser'
 parserOptions:
   ecmaVersion: latest

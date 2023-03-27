@@ -26,16 +26,16 @@ export default function FormInput<TFormValues extends FieldValues>({
       <input
         type="text"
         className={classNames(
-          'bg-black rounded-md py-2 px-4 outline-none focus:outline-primary w-full placeholder-primary-100',
+          'w-full rounded-md bg-black py-2 px-4 placeholder-primary-100 outline-none focus:outline-primary',
           {
             'focus:outline-text-error': !!error,
-          }
+          },
         )}
         placeholder={placeholder}
         {...register(name, rules)}
       />
       {error && (
-        <div className="block text-text-error text-sm mt-2">{error}</div>
+        <div className="mt-2 block text-sm text-text-error">{error}</div>
       )}
     </div>
   );

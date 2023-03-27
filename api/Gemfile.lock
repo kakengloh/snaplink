@@ -80,6 +80,10 @@ GEM
       irb (>= 1.5.0)
       reline (>= 0.3.1)
     docile (1.4.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     erubi (1.12.0)
     geocoder (1.8.1)
     globalid (1.1.0)
@@ -181,6 +185,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   debug
+  dotenv-rails (~> 2.8.1)
   geocoder (~> 1.8.1)
   hashids (~> 1.0.6)
   minitest
