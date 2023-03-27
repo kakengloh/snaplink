@@ -1,12 +1,16 @@
 import Head from 'next/head';
 import Header from '@/components/Header';
 import { BsMagic } from 'react-icons/bs';
+import { FiCopy } from 'react-icons/fi';
+import { MdRefresh } from 'react-icons/md';
 import Button from '@/components/Button';
 import FormInput from '@/components/FormInput';
 import api from '@/services/api';
 import { useMutation } from 'react-query';
-import { useForm } from 'react-hook-form';
+import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { isValidUrl } from '@/utils/common';
+import { useState } from 'react';
+import { Link } from '@/types/link';
 
 interface ShortenLinkForm {
   targetUrl: string;
@@ -23,18 +27,36 @@ export default function Home() {
     mode: 'all',
   });
 
-  const { mutate: createLink } = useMutation((targetUrl: string) =>
-    api.createLink(targetUrl)
+  const { mutateAsync: createLink, isLoading } = useMutation(
+    (targetUrl: string) => api.createLink(targetUrl)
   );
 
-  const onSubmit = ({ targetUrl }: ShortenLinkForm) => {
-    createLink(targetUrl, {
-      onSuccess: (link) => {
-        console.log(link);
-        reset();
-      },
-      onError: (err) => console.error(err),
-    });
+  const [link, setLink] = useState<Link>();
+
+  const resetForm = () => {
+    reset();
+    setLink(undefined);
+  };
+
+  const copyShortUrl = async () => {
+    if (link) {
+      await navigator.clipboard.writeText(link.short_url);
+    }
+  };
+
+  const onFormSubmit: SubmitHandler<ShortenLinkForm> = async ({
+    targetUrl,
+  }) => {
+    try {
+      const link = await createLink(targetUrl);
+      setLink(link);
+    } catch (err) {
+      console.error('Create link error:', err);
+    }
+  };
+
+  const onFormError: SubmitErrorHandler<ShortenLinkForm> = (errors) => {
+    console.error('Form submit error:', errors);
   };
 
   return (
@@ -63,7 +85,7 @@ export default function Home() {
           </div>
           <form
             className="w-[600px] space-y-5 bg-gray-900 p-5 rounded-xl"
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmit(onFormSubmit, onFormError)}
           >
             <FormInput
               name="targetUrl"
@@ -71,12 +93,33 @@ export default function Home() {
               rules={{
                 required: 'URL is required',
                 validate: (value) =>
-                  !isValidUrl(value) && 'Please enter a valid URL',
+                  isValidUrl(value) ? true : 'Please enter a valid URL',
               }}
               placeholder="Enter long URL"
               error={errors.targetUrl?.message}
             />
-            <Button type="submit" isFullWidth icon={BsMagic} text="Shorten" />
+
+            {link ? (
+              <div className="flex items-center space-x-2">
+                <Button
+                  isFullWidth
+                  text={link.short_url}
+                  icon={FiCopy}
+                  onClick={copyShortUrl}
+                />
+                <button onClick={resetForm}>
+                  <MdRefresh className="h-6 w-6 text-primary-400 hover:opacity-80" />
+                </button>
+              </div>
+            ) : (
+              <Button
+                type="submit"
+                isFullWidth
+                isLoading={isLoading}
+                icon={BsMagic}
+                text="Shorten"
+              />
+            )}
           </form>
         </div>
       </main>
