@@ -58,11 +58,17 @@ Snaplink provides a simple and user-friendly interface for shortening URLs. To s
 
 ## API Reference
 
-Snaplink's API provides two endpoints:
+Snaplink's API provides the following endpoints:
 
-1. `POST /v1/links` - This endpoint creates short links. It accepts a long URL as a parameter and returns a unique short link.
+1. `GET /:slug` - This endpoint tracks the link visit and redirects users to the target URL associated with the provided slug.
 
-2. `GET /:slug` - This endpoint tracks the link visit and redirects users to the target URL associated with the provided slug.
+2. `POST /v1/links` - This endpoint creates short links. It accepts a long URL as a parameter and returns a unique short link.
+
+3. `GET /internal/reports/most-clicked-links` - This endpoint returns a list of the most clicked links on Snaplink. The list is sorted in descending order by the number of clicks, with the link that has the most clicks appearing first. This information is useful for analyzing the popularity of certain links and can inform future marketing efforts or other business decisions.
+
+4. `GET /internal/reports/clicks-per-day` - This endpoint returns a count of the number of clicks on each day. This data can be used to identify trends and patterns in user behavior over time. For example, it could help identify days of the week or times of day that are most popular for link clicks.
+
+5. `GET /internal/reports/clicks-per-country` - This endpoint returns a count of the number of clicks from each countr. This data can be used to identify where Snaplink's user base is located and how it is growing over time.
 
 ## Deployment
 
