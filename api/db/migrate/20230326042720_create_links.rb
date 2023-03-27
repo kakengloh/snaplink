@@ -8,6 +8,8 @@ class CreateLinks < ActiveRecord::Migration[7.0]
       t.integer :clicks, default: 0
 
       t.timestamps
+
+      t.index :title, unique: true
     end
   end
 end

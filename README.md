@@ -87,6 +87,12 @@ Snaplink's API module is thoroughly tested using the Rails Minitest framework. T
 
 WebMock is used for mocking and stubbing during testing to ensure that external dependencies do not impact the test results.
 
+Before running the tests, we need to run the migrations and seeds in test environment
+
+```bash
+docker compose run --rm -e RAILS_ENV=test api rails db:migrate db:seed
+```
+
 To run the tests, use the following command:
 
 ```bash

@@ -29,5 +29,5 @@ require 'faker'
     }
   end
 
-  LinkVisit.insert_all(visits)
+  LinkVisit.insert_all(visits) unless visits.empty?
 end
