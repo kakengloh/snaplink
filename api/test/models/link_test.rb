@@ -3,18 +3,18 @@ require 'test_helper'
 class LinkTest < ActiveSupport::TestCase
   test 'should create link' do
     Link.create!(
-      slug: 'A7Y9BN',
+      slug: 'A7Y9BA',
       target_url: 'https://www.coingecko.com',
-      short_url: 'http://localhost:3000/A7Y9BN',
+      short_url: 'http://localhost:3000/A7Y9BA',
       title: 'Coingecko'
     )
   end
 
   test 'should create link even if title is nil' do
     Link.create!(
-      slug: 'A7Y9BN',
+      slug: 'A7Y9BB',
       target_url: 'https://www.coingecko.com',
-      short_url: 'http://localhost:3000/A7Y9BN',
+      short_url: 'http://localhost:3000/A7Y9BB',
       title: nil
     )
   end
@@ -23,7 +23,7 @@ class LinkTest < ActiveSupport::TestCase
     assert_raise(ActiveRecord::RecordInvalid) do
       Link.create!(
         target_url: 'https://www.coingecko.com',
-        short_url: 'http://localhost:3000/A7Y9BN',
+        short_url: 'http://localhost:3000/A7Y9BC',
         title: 'Coingecko'
       )
     end
