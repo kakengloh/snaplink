@@ -17,7 +17,9 @@ RUN bundle install
 # Copy app files
 COPY . .
 
-EXPOSE 3000
+ENV PORT=3000
+
+EXPOSE $PORT
 
 # Start server
 CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
