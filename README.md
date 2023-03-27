@@ -21,7 +21,7 @@ The Web module is a Next.js application that provides a user-friendly interface 
 
 ## Installation
 
-Snaplink is dockerized and requires Docker and docker-compose to be installed on your machine. To get started, follow the instructions below:
+Snaplink is dockerized and requires [Docker](https://www.docker.com) and [Docker Compose](https://docs.docker.com/compose) to be installed on your machine. To get started, follow the instructions below:
 
 1. Clone the repository:
 
@@ -32,18 +32,18 @@ Snaplink is dockerized and requires Docker and docker-compose to be installed on
 2. Build the Docker images:
 
    ```bash
-   docker-compose build
+   docker compose build
    ```
 
 3. Create database, run migrations and seeds:
 
    ```bash
-   docker-compose run --rm api rails db:create db:migrate db:seed
+   docker compose run --rm api rails db:create db:migrate db:seed
    ```
 
 4. Start the API and Web servers:
    ```bash
-   docker-compose up
+   docker compose up
    ```
 
 API should be running on http://localhost:3000 and Web should be running on http://localhost:8000.
