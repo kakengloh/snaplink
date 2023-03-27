@@ -30,3 +30,6 @@
 
 # Code coverage output
 coverage
+
+# Production key
+/config/credentials/production.key
