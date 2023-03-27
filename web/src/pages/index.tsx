@@ -1,12 +1,41 @@
 import Head from 'next/head';
 import Header from '@/components/Header';
-import { useState } from 'react';
 import { BsMagic } from 'react-icons/bs';
 import Button from '@/components/Button';
-import Input from '@/components/Input';
+import FormInput from '@/components/FormInput';
+import api from '@/services/api';
+import { useMutation } from 'react-query';
+import { useForm } from 'react-hook-form';
+import { isValidUrl } from '@/utils/common';
+
+interface ShortenLinkForm {
+  targetUrl: string;
+}
 
 export default function Home() {
-  const [targetUrl, setTargetUrl] = useState('');
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<ShortenLinkForm>({
+    defaultValues: { targetUrl: '' },
+    mode: 'all',
+  });
+
+  const { mutate: createLink } = useMutation((targetUrl: string) =>
+    api.createLink(targetUrl)
+  );
+
+  const onSubmit = ({ targetUrl }: ShortenLinkForm) => {
+    createLink(targetUrl, {
+      onSuccess: (link) => {
+        console.log(link);
+        reset();
+      },
+      onError: (err) => console.error(err),
+    });
+  };
 
   return (
     <>
@@ -32,14 +61,23 @@ export default function Home() {
               trust with your audience.
             </p>
           </div>
-          <div className="w-[600px] space-y-5 bg-gray-900 p-5 rounded-xl">
-            <Input
-              value={targetUrl}
-              onChange={(value) => setTargetUrl(value)}
+          <form
+            className="w-[600px] space-y-5 bg-gray-900 p-5 rounded-xl"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <FormInput
+              name="targetUrl"
+              register={register}
+              rules={{
+                required: 'URL is required',
+                validate: (value) =>
+                  !isValidUrl(value) && 'Please enter a valid URL',
+              }}
               placeholder="Enter long URL"
+              error={errors.targetUrl?.message}
             />
-            <Button isFullWidth icon={BsMagic} text="Shorten" />
-          </div>
+            <Button type="submit" isFullWidth icon={BsMagic} text="Shorten" />
+          </form>
         </div>
       </main>
     </>

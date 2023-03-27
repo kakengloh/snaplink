@@ -2,6 +2,7 @@ import { ComponentType } from 'react';
 import classNames from 'classnames';
 
 interface ButtonProps {
+  type?: 'button' | 'submit';
   icon?: ComponentType;
   text: string;
   isFullWidth?: boolean;
@@ -9,6 +10,7 @@ interface ButtonProps {
 }
 
 export default function Button({
+  type = 'button',
   text,
   icon: Icon,
   isFullWidth = false,
@@ -22,6 +24,7 @@ export default function Button({
           'w-full': isFullWidth,
         }
       )}
+      type={type}
       onClick={onClick}
     >
       {Icon && <Icon />} <span>{text}</span>
