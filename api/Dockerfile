@@ -11,16 +11,13 @@ ENV RAILS_LOG_TO_STDOUT true
 # Install gems
 COPY Gemfile Gemfile.lock ./
 RUN bundle update --bundler
-RUN bundle config --global frozen 1
 # RUN bundle install --without development test
 RUN bundle install
 
-FROM ruby:3.1.2 as runtime
-
 # Copy app files
-COPY --from=builder ./app ./
+COPY . .
 
 EXPOSE 3000
 
 # Start server
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
