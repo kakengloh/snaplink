@@ -5,7 +5,7 @@ const request = async <T>(
   path: string,
   { body = {}, headers = {} } = {}
 ): Promise<{ status: number; json: T }> => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${path}`, {
+  const response = await fetch(process.env.NEXT_PUBLIC_API_URL + path, {
     method,
     body: body ? JSON.stringify(body) : undefined,
     headers: {
