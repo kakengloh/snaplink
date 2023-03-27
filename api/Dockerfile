@@ -10,6 +10,7 @@ ENV RAILS_LOG_TO_STDOUT true
 
 # Install gems
 COPY Gemfile Gemfile.lock ./
+RUN bundle update --bundler
 RUN bundle config --global frozen 1
 # RUN bundle install --without development test
 RUN bundle install
