@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get ':slug', to: 'root#visit'
-
   draw(:v1)
+  draw(:internal)
+
+  get ':slug', to: 'root#visit'
 end

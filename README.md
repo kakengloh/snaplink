@@ -34,10 +34,10 @@ Snaplink is dockerized and requires Docker and docker-compose to be installed on
    docker-compose build
    ```
 
-3. Create database and run migrations:
+3. Create database, run migrations and seeds:
 
    ```bash
-   docker-compose run --rm api rails db:create db:migrate
+   docker-compose run --rm api rails db:create db:migrate db:seed
    ```
 
 4. Start the API and Web servers:

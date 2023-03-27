@@ -85,6 +85,8 @@ GEM
       dotenv (= 2.8.1)
       railties (>= 3.2)
     erubi (1.12.0)
+    faker (3.1.1)
+      i18n (>= 1.8.11, < 2)
     geocoder (1.8.1)
     globalid (1.1.0)
       activesupport (>= 5.0)
@@ -186,6 +188,7 @@ DEPENDENCIES
   bootsnap
   debug
   dotenv-rails (~> 2.8.1)
+  faker
   geocoder (~> 1.8.1)
   hashids (~> 1.0.6)
   minitest
