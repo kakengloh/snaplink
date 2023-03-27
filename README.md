@@ -9,6 +9,7 @@ Snaplink is an open-source link shortener that allows users to shorten long URLs
 - [Usage](#usage)
 - [API Reference](#api-reference)
 - [Deployment](#deployment)
+- [Testing](#testing)
 
 ## Project Structure
 
@@ -79,3 +80,15 @@ The API module is deployed to [Render](https://render.com) and can be accessed v
 The Web module is deployed to [Vercel](https://vercel.com) and can be accessed via the public URL: https://snaplink.vercel.app.
 
 Both environments are configured to automatically build and deploy the latest changes from the main branch of the Snaplink repository on GitHub. This ensures that the public-facing applications are always up-to-date with the latest features and bug fixes.
+
+# Testing
+
+Snaplink's API module is thoroughly tested using the Rails Minitest framework. Test coverage includes models, controllers, and services. The project has achieved 100% test coverage, ensuring the highest level of code quality and reliability.
+
+WebMock is used for mocking and stubbing during testing to ensure that external dependencies do not impact the test results.
+
+To run the tests, use the following command:
+
+```bash
+docker compose run --rm api rails test
+```
