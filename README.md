@@ -52,7 +52,7 @@ API should be running on http://localhost:3000 and Web should be running on http
 
 Snaplink provides a simple and user-friendly interface for shortening URLs. To shorten a URL, follow the steps below:
 
-1. Visit the web app at http://localhost:8000
+1. Visit the web app at http://localhost:8000 (local) or https://snaplink.vercel.app (remote)
 2. Enter the long URL you wish to shorten in the input field.
 3. Click the "Shorten" button to generate a unique short link.
 4. Copy the generated short link and use it for sharing.
@@ -69,7 +69,7 @@ Snaplink's API provides the following endpoints:
 
 4. `GET /internal/reports/clicks-per-day` - This endpoint returns a count of the number of clicks on each day. This data can be used to identify trends and patterns in user behavior over time. For example, it could help identify days of the week or times of day that are most popular for link clicks.
 
-5. `GET /internal/reports/clicks-per-country` - This endpoint returns a count of the number of clicks from each countr. This data can be used to identify where Snaplink's user base is located and how it is growing over time.
+5. `GET /internal/reports/clicks-per-country` - This endpoint returns a count of the number of clicks from each country. This data can be used to identify where Snaplink's user base is located and how it is growing over time.
 
 ## Deployment
 
