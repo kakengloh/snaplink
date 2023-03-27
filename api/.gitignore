@@ -35,4 +35,4 @@ coverage
 /config/credentials/production.key
 
 # Environment variables
-.env*
+.env
