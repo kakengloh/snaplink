@@ -28,4 +28,15 @@ class LinkTest < ActiveSupport::TestCase
       )
     end
   end
+
+  test 'should not create link if target URL is not a valid URL' do
+    assert_raise(ActiveRecord::RecordInvalid) do
+      Link.create!(
+        slug: 'A7Y9BD',
+        target_url: 'x',
+        short_url: 'http://localhost:3000/A7Y9BD',
+        title: 'X'
+      )
+    end
+  end
 end
